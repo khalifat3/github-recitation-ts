@@ -18,4 +18,3 @@ function fibonacci(n) {
   return memo[n];
 }
 
-module.exports = fibonacci;s

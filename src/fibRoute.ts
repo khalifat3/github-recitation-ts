@@ -1,26 +1,28 @@
-// src/fibRoute.ts
-import { Request, Response } from 'express';
-import { fibonacci } from './fib';  // Import the fibonacci function
+// Endpoint for querying the Fibonacci numbers
 
-const fibRoute = (req: Request, res: Response) => {
+const fibonacci = require("./fib"); // Assuming you are using CommonJS modules
+
+const fibRoute = (req, res) => {
   const { num } = req.params;
   const number = parseInt(num, 10);
 
   if (isNaN(number)) {
-    res.status(400).send('Invalid input');
+    res.status(400).send('Invalid input'); // Handle non-numeric input
     return;
   }
 
+  // Calculate Fibonacci number
   const fibN = fibonacci(number);
-  let result: string;
 
-  if (fibN === "undefined") {
-    result = `fibonacci(${number}) is undefined`;
+  // Construct response based on the result
+  let result;
+  if (number < 0) {
+    result = Fibonacci(${number}) is undefined; // Handle negative numbers
   } else {
-    result = `fibonacci(${number}) is ${fibN}`;
+    result = Fibonacci(${number}) is ${fibN}; // Handle valid numbers
   }
 
   res.send(result);
 };
 
-export default fibRoute;
+module.exports = fibRoute; // Export the route

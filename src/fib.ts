@@ -1,19 +1,28 @@
-// src/fib.ts
-const memo: Record<number, number> = {};
+// Endpoint for querying the Fibonacci numbers
 
-export function fibonacci(n: number): number | "undefined" {
-  if (n < 0) {
-    return "undefined";  // Use string "undefined" for negative numbers
-  } else if (n === 0) {
-    return 0;
-  } else if (n === 1) {
-    return 1;
+const fibonacci = require("./fib"); // Assuming you are using CommonJS modules
+
+const fibRoute = (req, res) => {
+  const { num } = req.params;
+  const number = parseInt(num, 10);
+
+  if (isNaN(number)) {
+    res.status(400).send('Invalid input'); // Handle non-numeric input
+    return;
   }
 
-  if (memo[n]) {
-    return memo[n];
+  // Calculate Fibonacci number
+  const fibN = fibonacci(number);
+
+  // Construct response based on the result
+  let result;
+  if (number < 0) {
+    result = Fibonacci(${number}) is undefined; // Handle negative numbers
+  } else {
+    result = Fibonacci(${number}) is ${fibN}; // Handle valid numbers
   }
 
-  memo[n] = fibonacci(n - 1) as number + fibonacci(n - 2) as number;
-  return memo[n];
-}
+  res.send(result);
+};
+
+module.exports = fibRoute; // Export the route

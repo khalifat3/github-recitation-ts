@@ -14,13 +14,3 @@ const fibRoute = (req, res) => {
   const fibN = fibonacci(number);
   let result;
 
-  if (fibN === "undefined") {
-    result = `fibonacci(${number}) is undefined`; // Handle negative numbers
-  } else {
-    result = `fibonacci(${number}) is ${fibN}`; // Handle valid numbers
-  }
-
-  res.send(result);
-};
-
-module.exports = fibRoute;

@@ -1,6 +1,6 @@
 // Endpoint for querying the Fibonacci numbers
 
-const fibonacci = require("./fib");
+const fibonacci = require("./fib"); // Assuming you are using CommonJS modules
 
 const fibRoute = (req, res) => {
   const { num } = req.params;
@@ -11,16 +11,18 @@ const fibRoute = (req, res) => {
     return;
   }
 
+  // Calculate Fibonacci number
   const fibN = fibonacci(number);
-  let result;
 
-  if (fibN === "undefined") {
-    result = fibonacci(${number}) is undefined; // Handle negative numbers
+  // Construct response based on the result
+  let result;
+  if (number < 0) {
+    result = `Fibonacci(${number}) is undefined`; // Handle negative numbers
   } else {
-    result = fibonacci(${number}) is ${fibN}; // Handle valid numbers
+    result = `Fibonacci(${number}) is ${fibN}`; // Handle valid numbers
   }
 
   res.send(result);
 };
 
-module.exports = fibRoute;
+module.exports = fibRoute; // Export the route
